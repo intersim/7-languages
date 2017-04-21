@@ -23,14 +23,14 @@
 # h = { "a" => 100, "b" => 200, "c" => 300 }
 # h.values   #=> [100, 200, 300]
 
-# can you iterate through a hash?
-# https://ruby-doc.org/core-2.1.0/Hash.html#method-i-each
+# # can you iterate through a hash?
+# # https://ruby-doc.org/core-2.1.0/Hash.html#method-i-each
 # h.each do |key, array|
 #   puts "#{key}-----"
 #   puts array
 # end
 
-# what other common data structures do arrays support?
+# # what other common data structures do arrays support?
 
 # # First exercise
 # # Print the contents of an array of sixteen numbers four numbers at a time, using just each. Now, do the same with each_slice in Enumerate.
@@ -59,6 +59,7 @@
 
 # # Second exercise
 # # The Tree class was interesting, but it did not allow you to specify a new tree with a clean user interface. Let the initializer accept a nested structure with hashes and arrays. You should be able to specify a tree like this:
+
 =begin
 
 {'grandpa' =>
