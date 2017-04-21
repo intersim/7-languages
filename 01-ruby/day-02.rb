@@ -1,27 +1,27 @@
-# How to access files with and without code blocks; what is benefit of code block?
-# File class - open method
-# Resource: http://benjamintan.io/blog/2015/03/28/ruby-block-patterns-and-how-to-implement-file-open/
+# # How to access files with and without code blocks; what is benefit of code block?
+# # File class - open method
+# # Resource: http://benjamintan.io/blog/2015/03/28/ruby-block-patterns-and-how-to-implement-file-open/
 # without block - get file handle, then have to remember to close the file!
 # f = File.open('Leo Tolstoy - War and Peace.txt', 'w')
 # f << "Well, Prince, so Genoa and Lucca"
 # f << " are now just family estates of the Buonapartes."
 # f.close
 
-# blocks: abstract away pre-and post-processing? (would otherwise have to remember to manually close the file)
-# second optional argument to the File open method
+# # blocks: abstract away pre-and post-processing? (would otherwise have to remember to manually close the file)
+# # second optional argument to the File open method
 # File.open('Leo Tolstoy - War and Peace.txt', 'w') do |f|
 #   f << "Well, Prince, so Genoa and Lucca"
 #   f << " are now just family estates of the Buonapartes."
 # end
 
-# translate a hash to an array? translate arrays to hashes?
-# hash's keys into array:
-h = { "a" => 100, "b" => 200, "c" => 300, "d" => 400 }
-h.keys #=> ["a", "b", "c", "d"]
+# # translate a hash to an array? translate arrays to hashes?
+# # hash's keys into array:
+# h = { "a" => 100, "b" => 200, "c" => 300, "d" => 400 }
+# h.keys #=> ["a", "b", "c", "d"]
 
-# hash's values into array:
-h = { "a" => 100, "b" => 200, "c" => 300 }
-h.values   #=> [100, 200, 300]
+# # hash's values into array:
+# h = { "a" => 100, "b" => 200, "c" => 300 }
+# h.values   #=> [100, 200, 300]
 
 # can you iterate through a hash?
 # https://ruby-doc.org/core-2.1.0/Hash.html#method-i-each
@@ -32,6 +32,7 @@ h.values   #=> [100, 200, 300]
 
 # what other common data structures do arrays support?
 
+# # First exercise
 # # Print the contents of an array of sixteen numbers four numbers at a time, using just each. Now, do the same with each_slice in Enumerate.
 # arr = []
 
@@ -39,6 +40,7 @@ h.values   #=> [100, 200, 300]
 #   arr.push(i)
 # end
 
+# # Version 1:
 # arr.each do |el|
 #   idx = arr.index(el)
 #   if idx % 4 == 0
@@ -46,14 +48,17 @@ h.values   #=> [100, 200, 300]
 #   end
 # end
 
+# # Version 2:
 # arr.each_slice(4).to_a.each {|a| print "#{a[0]} #{a[1]} #{a[2]} #{a[3]}\n"}
 
+# # Version 2.5:
 # arr.each_slice(4).to_a.each do |a|
 #   (0..3).each {|i| print "#{a[i]}"}
 #   puts "\n"
 # end
 
-# The Tree class was interesting, but it did not allow you to specify a new tree with a clean user interface. Let the initializer accept a nested structure with hashes and arrays. You should be able to specify a tree like this:
+# # Second exercise
+# # The Tree class was interesting, but it did not allow you to specify a new tree with a clean user interface. Let the initializer accept a nested structure with hashes and arrays. You should be able to specify a tree like this:
 =begin
 
 {'grandpa' =>
