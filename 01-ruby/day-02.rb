@@ -1,6 +1,6 @@
 # How to access files with and without code blocks; what is benefit of code block?
 # File class - open method
-#Resource: http://benjamintan.io/blog/2015/03/28/ruby-block-patterns-and-how-to-implement-file-open/
+# Resource: http://benjamintan.io/blog/2015/03/28/ruby-block-patterns-and-how-to-implement-file-open/
 # without block - get file handle, then have to remember to close the file!
 # f = File.open('Leo Tolstoy - War and Peace.txt', 'w')
 # f << "Well, Prince, so Genoa and Lucca"
@@ -53,39 +53,74 @@ h.values   #=> [100, 200, 300]
 #   puts "\n"
 # end
 
-# The Tree class was interesting, but it did not allow you to specify a new tree with a clean user interface. Let the initializer accept a nested structure with hashes and array. You should be able to specify a tree like this:
-# `{'grandpa' => { 'dad' => { 'child 1' => {}, 'child 2' => {} }, 'uncle' => { 'child 3' => {}, 'child 4' => {} } }}
+# The Tree class was interesting, but it did not allow you to specify a new tree with a clean user interface. Let the initializer accept a nested structure with hashes and arrays. You should be able to specify a tree like this:
+=begin
 
-class Tree
-  attr_accessor :children, :node_name
+{'grandpa' =>
+  { 'dad' =>
+    { 'child 1' => {},
+      'child 2' => {} },
+    'uncle' => {
+      'child 3' => {},
+      'child 4' => {}
+    }
+  }
+}
 
-  def initialize(name, children=[])
-    @children = children
-    @node_name = name
-  end
+=end
 
-  def visit_all(&block)
-    visit &block
-    children.each {|c| c.visit_all &block}
-  end
+# class Tree
+#   attr_accessor :children, :node_name
 
-  def visit(&block)
-    block.call self
+#   def initialize(hash)
+#     @node_name = hash.keys[0]
+#     @children = []
+
+#     subtree = hash[node_name]
+#     if subtree.keys.length > 0
+#       subtree.each do |name, kids|
+#         newHash = Hash.new
+#         newHash[name] = kids
+#         children.push(Tree.new(newHash))
+#       end
+#     end
+#   end
+
+#   def visit_all(&block)
+#     visit &block
+#     children.each {|c| c.visit_all &block}
+#   end
+
+#   def visit(&block)
+#     block.call self
+#   end
+# end
+
+# ruby_tree = Tree.new({'grandpa' =>
+#   { 'dad' =>
+#     { 'child 1' => {},
+#       'child 2' => {} },
+#     'uncle' => {
+#       'child 3' => {},
+#       'child 4' => {}
+#     }
+#   }
+# })
+
+# puts 'Visiting a node'
+# ruby_tree.visit {|node| puts node.node_name}
+
+# puts 'visiting entire tree'
+# ruby_tree.visit_all {|node| puts node.node_name}
+
+# Write a simple grep that will print the lines of a file having any occurrences of a phrase anywhere in that line. You will need to do a simple regular expression match and read lines from a file. (This is surprisingly simple in Ruby.) If you want, include line numbers.
+
+# user input should look like this: `filename string`
+def rubyGrep()
+  input = gets.split(' ')
+  File.open(input[0], 'r').each_line do |line|
+    puts "#{line.strip}..." if line.include? input[1]
   end
 end
 
-=begin
-ruby_tree = Tree.new('Ruby',
-  [
-    Tree.new('Reia'),
-    Tree.new('MacRuby')
-  ])
-
-puts 'Visiting a node'
-ruby_tree.visit {|node| puts node.node_name}
-
-puts 'visiting entire tree'
-ruby_tree.visit_all {|node| puts node.node_name}
-=end
-
-# Write a simple grep that will print the lines of a file having any occurrences of a phrase anywhere in that line. You will need to do a simple regular expression match and read lines from a file. (This is surprisingly simple in Ruby.) If you want, include line numbers.
+rubyGrep()
