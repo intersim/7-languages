@@ -122,9 +122,10 @@
 
 # user input should look like this: `filename string`
 def rubyGrep()
-  input = gets.split(' ')
-  File.open(input[0], 'r').each_line do |line|
-    puts "#{line.strip}..." if line.include? input[1]
+  filename, phrase = gets.split(' ')
+  regex = Regexp.new(phrase)
+  File.open(filename, 'r').each_line do |line|
+    puts "#{line.strip}..." if regex.match(line) != nil
   end
 end
 
