@@ -38,8 +38,11 @@ module ActsAsCsv
       end
     end
 
-    def each
-
+    def each(&block)
+      @csv_contents.each do |row|
+        csvRow = CsvRow.new(row)
+        block.call csvRow
+      end
     end
 
     attr_accessor :headers, :csv_contents
@@ -47,6 +50,20 @@ module ActsAsCsv
       read
     end
   end
+end
+
+class CsvRow
+  def method_missing name, *args
+    require 'numbers_in_words'
+    column_idx = NumbersInWords.in_numbers(name) - 1
+    @row_contents[column_idx]
+  end
+
+  def initialize(rowStr)
+    @row_contents = rowStr[0].split(', ')
+  end
+
+  attr_accessor :row_contents
 end
 
 class RubyCsv  # no inheritance! You can mix it in
@@ -57,5 +74,6 @@ end
 m = RubyCsv.new
 puts m.headers.inspect
 puts m.csv_contents.inspect
+m.each {|row| puts row.one}
 
 
