@@ -9,7 +9,7 @@
 # Answer
 * Evaluate 1 + 1 and then 1 + "one". Is Io strong typed or weakly typed? Support your answer with code.
   * Strongly typed; trying to add together a number and a string throws an exception
-  ```
+  ```io
     Io> 1 + "one"
 
     Exception: argument 0 to method '+' must be a Number, not a 'Sequence'
@@ -21,7 +21,7 @@
   * `0` is false
   * `''` is true
   * `nil` is false
-  ```
+  ```io
   if (false, "0 is true" print)
   ==> false
   if (true, "0 is true" print)
@@ -46,4 +46,5 @@
 
 # Do
 * Run an Io program from a file. (`io [FILENAME HERE].io`)
+
 * Execute the code in a slot given its name.
