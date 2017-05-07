@@ -1,5 +1,6 @@
 # Find
 
+* [Example code in Io's repo](https://github.com/stevedekorte/io/tree/master/samples/misc)
 * [Official docs tutorial (example problems)](http://iolanguage.org/tutorial.html)
 * [Official style guide](http://iolanguage.org/guide/guide.html)
 * [Unofficial style guide](https://en.wikibooks.org/wiki/Io_Programming/Io_Style_Guide)
