@@ -13,26 +13,26 @@ fib := method(num,
   start at(num)
 )
 
-fib(1) println
-fib(4) println
-fib(10) println
+# fib(1) println
+# fib(4) println
+# fib(10) println
 
 # with recursion
 fib := method(num,
   if(num == 0 or num == 1, num, fib(num - 2) + fib(num - 1))
 )
 
-fib(1) println
-fib(4) println
-fib(10) println
+# fib(1) println
+# fib(4) println
+# fib(10) println
 
 # # 2. How would you change / to return 0 if the denominator is zero?
 
 divide := Number getSlot("/")
 Number / = method(num, if(num == 0, 0, divide(num)))
 
-(7 / 0) println
-(1 / 2) println
+# (7 / 0) println
+# (1 / 2) println
 
 # 3. Write a program to add up all of the numbers in a two-dimensional array.
 
@@ -47,7 +47,7 @@ sumTwoDArray := method(array,
   sum
 )
 
-sumTwoDArray(list(1, list(2, 3))) println
+# sumTwoDArray(list(1, list(2, 3))) println
 
 # 4. Add a slot called myAverage to a list that computes the average of all the numbers in a list. What happens if there are no numbers in a list? (Bonus: Raise an Io exception if any item in the list is not a number.)
 
@@ -58,3 +58,27 @@ sumTwoDArray(list(1, list(2, 3))) println
 # 7. Write the matrix to a file, and read a matrix from a file.
 
 # 8. Write a program that gives you ten tries to guess a random number from 1–100. If you would like, give a hint of “hotter” or “colder” after the first guess.
+
+count := 0
+guessNum := method(
+  count = count + 1
+
+  if (count == 10, return)
+
+  num := Random value(1, 100) round
+  num println
+
+  guess := File standardInput readLine
+
+  if (
+    num < guess,
+
+    "Too low! Guess again..." println,
+    if (num == guess,
+      "You got it! 🎊 🎊 🎊" println,
+      "Too high! Guess again..." println
+    )
+  )
+)
+
+guessNum()
