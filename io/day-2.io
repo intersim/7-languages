@@ -59,26 +59,28 @@ sumTwoDArray := method(array,
 
 # 8. Write a program that gives you ten tries to guess a random number from 1–100. If you would like, give a hint of “hotter” or “colder” after the first guess.
 
-count := 0
-guessNum := method(
-  count = count + 1
+# count := 0
+# num := Random value(1, 100) round
 
-  if (count == 10, return)
+# guessNum := method(
+#   count = count + 1
+#   if (count == 10,
+#     "Game over ☠️" println
+#     return,
+#     "Guess the number...");
 
-  num := Random value(1, 100) round
-  num println
+#   guess := File standardInput readLine asNumber
 
-  guess := File standardInput readLine
+#   if (
+#     num > guess,
+#     "Too low!" println
+#     guessNum(),
+#     if (num == guess,
+#       "You got it! 🎊 🎊 🎊" println,
+#       "Too high!" println
+#       guessNum()
+#     )
+#   )
+# )
 
-  if (
-    num < guess,
-
-    "Too low! Guess again..." println,
-    if (num == guess,
-      "You got it! 🎊 🎊 🎊" println,
-      "Too high! Guess again..." println
-    )
-  )
-)
-
-guessNum()
+# guessNum()
