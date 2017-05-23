@@ -81,11 +81,26 @@ dim := method(
 # 7. Write the matrix to a file, and read a matrix from a file.
 
 # 8. Write a program that gives you ten tries to guess a random number from 1–100. If you would like, give a hint of “hotter” or “colder” after the first guess.
-guessingGame := method(
-  tries := 0
-  "Guess the number between 1 and 10!" println
-  Curses init
-  Curses input()
+count := 0
+guessNum := method(
+  count = count + 1
+
+  if (count == 10, return)
+
+  num := Random value(1, 100) round
+  num println
+
+  guess := File standardInput readLine
+
+  if (
+    num < guess,
+
+    "Too low! Guess again..." println,
+    if (num == guess,
+      "You got it! 🎊 🎊 🎊" println,
+      "Too high! Guess again..." println
+    )
+  )
 )
 
-guessingGame()
+guessNum()
